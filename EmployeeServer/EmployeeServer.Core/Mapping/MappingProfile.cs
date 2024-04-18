@@ -14,8 +14,8 @@ namespace EmployeeServer.Core.Mapping
         public MappingProfile()
         {
             CreateMap<Employee, EmployeeDto>().ReverseMap();
-            CreateMap<Position, PositionDto>().ReverseMap();
-            CreateMap<EmployeePosition, EmployeePositionDto>().ReverseMap();
+            CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<EmployeeRole, EmployeeRoleDto>().ReverseMap();
         }
 
     }

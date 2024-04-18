@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace EmployeeServer.Core.Entities
 {
 
-    public class Position
+    public class Role
     {
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-        
-      
+
+        [Required(ErrorMessage = "Role name is required")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Role name must be between 3 and 15 characters")]
+        public string RoleName { get; set; }
     }
 }

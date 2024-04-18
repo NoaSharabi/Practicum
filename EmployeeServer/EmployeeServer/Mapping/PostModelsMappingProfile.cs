@@ -8,9 +8,9 @@ namespace EmployeeServer.Mapping
     {
         public PostModelsMappingProfile()
         {
-            CreateMap<EmployeePostModel, Employee>();
-            CreateMap<PositionPostModel, Position>();
-            CreateMap<EmployeePositionPostModel, EmployeePosition>();
+            CreateMap<EmployeePostModel, Employee>().ReverseMap();
+            CreateMap<RolePostModel, Role>().ReverseMap();
+            CreateMap<EmployeeRolePostModel, EmployeeRole>().ReverseMap();
         }
 
     }

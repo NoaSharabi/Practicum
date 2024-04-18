@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeServer.Data.Repositories
 {
-    public class EmployeeRepository:IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly DataContext _dataContext;
 
@@ -18,65 +18,37 @@ namespace EmployeeServer.Data.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<Employee> GetByIdAsync(int id)
-        {
-            return await _dataContext.Employees.FindAsync(id);
-        }
-
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
-            return await _dataContext.Employees
-                .Where(e=>e.EmployeeStatus).ToListAsync();
+            return await _dataContext.Employees.Where(e => e.EmployeeActivityStatus).Include(e => e.Roles).ThenInclude(er => er.Role).ToListAsync();
+        }
+        public async Task<Employee> GetByIdAsync(int employeeId)
+        {
+            return await _dataContext.Employees.Where(e => e.EmployeeActivityStatus).Include(e => e.Roles).ThenInclude(j => j.Role).FirstAsync(c => c.Id == employeeId);
         }
 
         public async Task<Employee> AddAsync(Employee employee)
         {
-            await _dataContext.Employees.AddAsync(employee);
+            employee.EmployeeActivityStatus = true;
+            _dataContext.Employees.Add(employee);
             await _dataContext.SaveChangesAsync();
             return employee;
         }
 
-        public async Task<Employee> UpdateAsync(int id, Employee employee)
+        public async Task<Employee> UpdateAsync(Employee employee)
         {
-            var updateEmployee = await _dataContext.Employees.FirstOrDefaultAsync(e => e.Id == id);
-            if (updateEmployee == null)
-            {
-                return null;
-            }
-            updateEmployee.FirstName = employee.FirstName;
-            updateEmployee.LastName =  employee.LastName;
-            updateEmployee.Identity =  employee.Identity;
-            updateEmployee.Gender =    employee.Gender;
-            updateEmployee.BirthDate = employee.BirthDate;
-            updateEmployee.EntryDate = employee.EntryDate;
-
+            var existEmployee = await GetByIdAsync(employee.Id);
+            _dataContext.Entry(existEmployee).CurrentValues.SetValues(existEmployee);
             await _dataContext.SaveChangesAsync();
-
-            return employee;
+            return existEmployee;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task DeleteAsync(int employeeId)
         {
-            var employee = await _dataContext.Employees.FirstOrDefaultAsync(e => e.Id == id );
-
-            if (employee != null)
-            {
-                var positions = await _dataContext.EmployeePositions.Where(ep => ep.EmployeeId == employee.Id).ToListAsync();
-                foreach (var position in positions)
-                {
-                    position.EmployeePositionStatus = false;
-                }
-                employee.EmployeeStatus = false;
-
-                await _dataContext.SaveChangesAsync();
-                return true; 
-            }
-         
-            
-            return false; 
+            var employee = await GetByIdAsync(employeeId);
+            employee.EmployeeActivityStatus = false;
+            await _dataContext.SaveChangesAsync();
         }
-
-   
     }
 }
 

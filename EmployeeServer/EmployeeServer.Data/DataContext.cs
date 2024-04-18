@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,19 @@ namespace EmployeeServer.Data
     public class DataContext: DbContext
     {
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Position> Positions { get; set; }
-        public DbSet<EmployeePosition> EmployeePositions { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<EmployeePosition>()
-                .HasKey(p => new { p.EmployeeId, p.PositionId });
-        }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<EmployeeRole> EmployeeRoles { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=employeeServer_db");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=EmployeeServer_DB");
         }
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+
+        //    optionsBuilder.UseSqlServer("Data Source=DESKTOP-24EQMFH;Initial Catalog=MngEmployeesProject;Integrated Security=true; TrustServerCertificate=True; Encrypt=False;");
+        //    optionsBuilder.LogTo((message) => Debug.Write(message));
+        //}
     }
 }

@@ -14,7 +14,6 @@ namespace EmployeeServer.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
-      
         private readonly IMapper _mapper;
         public EmployeesController(IEmployeeService employeeService, IMapper mapper)
         {
@@ -30,30 +29,40 @@ namespace EmployeeServer.Controllers
             var employees = await _employeeService.GetAllAsync();
             return Ok(_mapper.Map<IEnumerable<EmployeeDto>>(employees));
         }
-
+       
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
             var employee = await _employeeService.GetByIdAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
             return Ok(_mapper.Map<EmployeeDto>(employee));
         }
-
+        
         // POST api/<EmployeeController>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] EmployeePostModel model)
         {
-            var newEmployee =await _employeeService.AddAsync(_mapper.Map<Employee>(model));
-            return Ok(_mapper.Map<EmployeeDto>(newEmployee));
+            try
+            {
+                var newEmployee = await _employeeService.AddAsync(_mapper.Map<Employee>(model));
+                return Ok(_mapper.Map<EmployeeDto>(newEmployee));
+            }
+            catch (InvalidOperationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
-
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
 
  
         public async Task<ActionResult> Put(int id, [FromBody] EmployeePostModel model)
         {
-            var updateEmployee = await _employeeService.UpdateAsync(id, _mapper.Map<Employee>(model));
+            var updateEmployee = await _employeeService.UpdateAsync( _mapper.Map<Employee>(model));
             return Ok(_mapper.Map<EmployeeDto>(updateEmployee));
            
         }
@@ -67,7 +76,8 @@ namespace EmployeeServer.Controllers
                 return NotFound();
             }
             await _employeeService.DeleteAsync(id);
-            return NoContent();
+            return Ok();
         }
+       
     }
 }
