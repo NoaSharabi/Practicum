@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Employee } from '../../models/employee.model';
@@ -6,7 +7,7 @@ import { EmployeeService } from '../../services/employee.service';
 @Component({
   selector: 'app-list-of-employees',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,NgFor],
   templateUrl: './list-of-employees.component.html',
   styleUrl: './list-of-employees.component.scss'
 })
