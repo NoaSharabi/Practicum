@@ -11,6 +11,7 @@ namespace EmployeeServer.Core.Entities
     public class EmployeeRole
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Employee id is required")]
         public int EmployeeId { get; set; }
         public int RoleId { get; set; }
 

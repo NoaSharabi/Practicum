@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
@@ -5,7 +6,7 @@ import { EmployeeService } from '../../services/employee.service';
 @Component({
   selector: 'app-list-of-employees',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './list-of-employees.component.html',
   styleUrl: './list-of-employees.component.scss'
 })

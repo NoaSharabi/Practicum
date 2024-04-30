@@ -1,22 +1,28 @@
 export enum Gender{
-    male,
-    female
+    male=1,
+    female=2
 }
 export class Employee{
-    identity?:string
-    firstName?:string
-    lastName?:string
-    startDate?:Date
-    birthDate?:Date
-    gender?:Gender
-    roles?:EmployeeRole[]
+    id!:number
+    identity!:string
+    firstName!:string
+    lastName!:string
+    startDate!:Date
+    birthDate!:Date
+    gender!:Gender
+    employeeActivityStatus!:boolean
+    roles!:EmployeeRole[]
 }
 export class Role{
-    roleName?:string
+    id!:number
+    roleName!:string
 }
 export class EmployeeRole{
-    roleId?:number
-    startDate?:Date
-    isManagement?:boolean
-
+    id!:number
+    employeeId!:number
+    employee!:Employee
+    roleId!:number
+    role?:Role
+    startDate!:Date
+    isManagement!:boolean
 }

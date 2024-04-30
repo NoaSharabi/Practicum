@@ -33,7 +33,7 @@ namespace EmployeeServer.Data.Repositories
                 .FirstOrDefaultAsync(er => er.EmployeeId == employeeRole.EmployeeId && er.RoleId == employeeRole.RoleId);
             if (existingRole != null)
             {
-                throw new ArgumentException("The employee already has this role");
+                throw new ArgumentException("The employee has this role already");
             }
             //בדיקה  שהתאריך מאוחר או שווה לתאריך תחילת העבודה
             var checkDate = await _dataContext.EmployeeRoles
@@ -43,6 +43,7 @@ namespace EmployeeServer.Data.Repositories
                 throw new ArgumentException("Employee already has a role with a start date on/after the provided start date");
             }
             _dataContext.EmployeeRoles.Add(employeeRole);
+            
             await _dataContext.SaveChangesAsync();
             return employeeRole;
         }
