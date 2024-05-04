@@ -25,7 +25,7 @@ namespace EmployeeServer.Controllers
         // GET: api/<EmployeeController>
         [HttpGet]
         public async Task<ActionResult> Get()
-        {
+        {       
             var employees = await _employeeService.GetAllAsync();
             return Ok(_mapper.Map<IEnumerable<EmployeeDto>>(employees));
         }

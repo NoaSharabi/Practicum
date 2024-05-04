@@ -20,10 +20,6 @@ namespace EmployeeServer.Service
         }
 
 
-
-
-
-
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
             return await _employeeRepository.GetAllAsync();

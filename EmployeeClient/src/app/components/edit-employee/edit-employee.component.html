@@ -1,0 +1,46 @@
+<h3 mat-dialog-title>Subscribe Form</h3>
+<mat-dialog-content>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Identity</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput type="datetime">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Birth Date</mat-label>
+            <input matInput type="datetime">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Select Employee Gender</mat-label>
+            <mat-select>
+                <mat-option value="male">Male</mat-option>
+                <mat-option value="female">Female</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Save</button>
+</mat-dialog-actions>
