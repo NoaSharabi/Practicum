@@ -8,7 +8,16 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-edit-employee',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule,MatDialogModule,MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
+  imports: [
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatSelectModule,
+    MatDialogModule,
+    MatButtonModule, 
+    MatDialogActions, 
+    MatDialogClose, 
+    MatDialogTitle, 
+    MatDialogContent],
   templateUrl: './edit-employee.component.html',
   styleUrl: './edit-employee.component.scss'
 })

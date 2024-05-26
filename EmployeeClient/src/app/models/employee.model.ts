@@ -9,9 +9,9 @@ export class Employee{
     lastName!:string
     startDate!:Date
     birthDate!:Date
-    gender!:Gender
+    gender!:number
     employeeActivityStatus!:boolean
-    roles!:EmployeeRole[]
+    roles:EmployeeRole[]=[]
 }
 export class Role{
     id!:number

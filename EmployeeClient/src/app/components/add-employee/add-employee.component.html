@@ -1,53 +1,69 @@
 <h3 mat-dialog-title>Subscribe Form</h3>
-<mat-dialog-content>
-    <div id="first">
-        <mat-form-field appearance="outline">
-            <mat-label>Identity</mat-label>
-            <input [(ngModel)]="identity" matInput>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input [(ngModel)]="firstName" matInput>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input [(ngModel)]="lastName" matInput>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Start Date</mat-label>
-            <input [(ngModel)]="startDate" matInput type="datetime">
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Birth Date</mat-label>
-            <input [(ngModel)]="birthDate" matInput type="datetime">
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Select Employee Gender</mat-label>
-            <mat-select [(ngModel)]="gender">
-                <mat-option value="male">Male</mat-option>
-                <mat-option value="female">Female</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Role Id</mat-label>
-            <input [(ngModel)]="birthDate" matInput type="datetime">
-        </mat-form-field>
-    </div>
-    
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button (click)="addEmployee()" mat-button mat-dialog-close cdkFocusInitial>Save</button>
-</mat-dialog-actions>
+<form [formGroup]="form">
+    <mat-dialog-content>
+        <div id="first">
+            <mat-form-field appearance="outline">
+                <mat-label>Identity</mat-label>
+                <input formControlName="identity" [(ngModel)]="newEmployee.identity" matInput required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input formControlName="first_name" [(ngModel)]="newEmployee.firstName" matInput required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input formControlName="last_name" [(ngModel)]="newEmployee.lastName" matInput required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Start Date</mat-label>
+                <input formControlName="start_date" [(ngModel)]="newEmployee.startDate" matInput [matDatepicker]="picker1">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Birth Date</mat-label>
+                <input formControlName="birth_date" [(ngModel)]="newEmployee.birthDate" matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Select Employee Gender</mat-label>
+                <mat-select formControlName="gender" [(ngModel)]="newEmployee.gender" required>
+                    <mat-option value="1">Male</mat-option>
+                    <mat-option value="2">Female</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Select Role</mat-label>
+                <mat-select formControlName="role" [(ngModel)]="employeeRole.roleId" required>
+                    <mat-option *ngFor="let role of roles" value='{{role.id}}'>{{role.roleName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button (click)="addEmployee()" [disabled]="form.invalid" mat-button mat-dialog-close cdkFocusInitial>Save</button>
+    </mat-dialog-actions>
+</form>

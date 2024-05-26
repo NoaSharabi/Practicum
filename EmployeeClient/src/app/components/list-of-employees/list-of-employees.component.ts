@@ -44,6 +44,7 @@ export class ListOfEmployeesComponent {
     const dialogRef = this.dialog.open(AddEmployeeComponent);
 
     dialogRef.afterClosed().subscribe(result => {
+      this.get()
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -73,24 +74,6 @@ export class ListOfEmployeesComponent {
         this.get()
       },
       error: (err) => { console.log(`employee ${id} not deleted` + err) }
-    })
-  }
-  post() {
-    this.employeeService.addEmployee().subscribe({
-      next: () => {
-        console.log(`employee was added`)
-        this.get()
-      },
-      error: (err) => { console.log(`employee wasn't added` + err) }
-    })
-  }
-  put(id: number) {
-    this.employeeService.updateEmployee(id).subscribe({
-      next: () => {
-        console.log(`employee ${id} was updated`)
-        this.get()
-      },
-      error: (err) => { console.log(`employee ${id} wasn't updated` + err) }
     })
   }
 }

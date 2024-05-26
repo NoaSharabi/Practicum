@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\Practicum\\EmployeeServer\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FE40DA1A-8263-4534-B9F6-717C07141CF2}|EmployeeServer\\EmployeeServer.API.csproj|c:\\users\\user\\desktop\\practicum\\employeeserver\\employeeserver\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE40DA1A-8263-4534-B9F6-717C07141CF2}|EmployeeServer\\EmployeeServer.API.csproj|solutionrelative:employeeserver\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41D1DC0E-3C7E-4DA7-B146-BC60ECC3A7E3}|EmployeeServer.Service\\EmployeeServer.Service.csproj|c:\\users\\user\\desktop\\practicum\\employeeserver\\employeeserver.service\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41D1DC0E-3C7E-4DA7-B146-BC60ECC3A7E3}|EmployeeServer.Service\\EmployeeServer.Service.csproj|solutionrelative:employeeserver.service\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Practicum\\EmployeeServer\\EmployeeServer.Service\\Services\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "EmployeeServer.Service\\Services\\EmployeeService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Practicum\\EmployeeServer\\EmployeeServer.Service\\Services\\EmployeeService.cs",
+              "RelativeToolTip": "EmployeeServer.Service\\Services\\EmployeeService.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAkwCsAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T16:32:22.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeesController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\Practicum\\EmployeeServer\\EmployeeServer\\Controllers\\EmployeesController.cs",
+              "RelativeDocumentMoniker": "EmployeeServer\\Controllers\\EmployeesController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\Practicum\\EmployeeServer\\EmployeeServer\\Controllers\\EmployeesController.cs",
+              "RelativeToolTip": "EmployeeServer\\Controllers\\EmployeesController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwDIAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T15:42:07.92Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
