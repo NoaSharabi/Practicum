@@ -1,0 +1,10 @@
+<form>
+    <h2 mat-dialog-title>Delete Employee</h2>
+    <mat-dialog-content>
+        Are you sure you want to delete {{data.firstName}} {{data.lastName}}?
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="close()">Cancel</button>
+        <button mat-button (click)="deleteEmployee()" mat-dialog-close cdkFocusInitial>Delete</button>
+    </mat-dialog-actions>
+</form>

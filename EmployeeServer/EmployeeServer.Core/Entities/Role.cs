@@ -15,5 +15,7 @@ namespace EmployeeServer.Core.Entities
         [Required(ErrorMessage = "Role name is required")]
         [StringLength(15, MinimumLength = 3, ErrorMessage = "Role name must be between 3 and 15 characters")]
         public string RoleName { get; set; }
+        public bool IsManagement { get; set; }
+
     }
 }

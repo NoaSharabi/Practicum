@@ -10,6 +10,7 @@ namespace EmployeeServer.Core.DTOs
     {
         public int Id { get; set; }
         public string RoleName { get; set; }
-       
+        public bool IsManagement { get; set; }
+
     }
 }

@@ -1,5 +1,10 @@
-<button mat-button (click)="openDialog()">Add Employee</button>
-<table mat-table [dataSource]="employeesList" class="mat-elevation-z8">
+<button mat-button (click)="openAdding()">Add Employee</button>
+
+
+        <input (keyup)="onKeyUP()" [(ngModel)]="searchEmployee">
+
+
+<table mat-table [dataSource]="employeesListFilter" class="mat-elevation-z8">
 
     <ng-container matColumnDef="identity">
         <th mat-header-cell *matHeaderCellDef> Identity </th>
@@ -26,13 +31,13 @@
         <td mat-cell *matCellDef="let element" >
 
             <span class="example-button-container">
-                <button (click)="delete(element.id)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <button (click)="openDeleting(element)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>delete</mat-icon>
                 </button>
             </span>
 
             <span class="example-button-container">
-                <button (click)="openDialog2(element.id)" mat-fab color="primary" aria-label="Example icon button with an edit icon">
+                <button (click)="openEditing(element)" mat-fab color="primary" aria-label="Example icon button with an edit icon">
                     <mat-icon>edit</mat-icon>
                 </button>
             </span>

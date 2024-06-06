@@ -24,8 +24,7 @@ namespace EmployeeServer.Core.Entities
         [Required(ErrorMessage = "Start date is required")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
 
-        public bool IsManagement { get; set; }
     }
 }

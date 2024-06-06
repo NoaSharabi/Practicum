@@ -16,13 +16,9 @@ export class Employee{
 export class Role{
     id!:number
     roleName!:string
+    isManagement!:boolean
+
 }
 export class EmployeeRole{
-    id!:number
-    employeeId!:number
-    employee!:Employee
-    roleId!:number
-    role?:Role
-    startDate!:Date
-    isManagement!:boolean
+    roleId!:number  
 }
