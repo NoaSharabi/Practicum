@@ -71,19 +71,14 @@ export class ListOfEmployeesComponent {
   openEditing(element: any) {
     const dialogRef = this.dialog.open(EditEmployeeComponent, {
       width: '300px',
-      data: JSON.parse(JSON.stringify(element)) // זה יוצר עותק עמוק של האובייקט
-  });
+      data: JSON.parse(JSON.stringify(element))
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-          // כאן תוכל לעדכן את רשימת העובדים אם יש שינוי
-          this.employeeService.updateEmployee(result.id, result).subscribe(res => {
-              this.get();
-          }, error => {
-              console.error('Error updating employee', error);
-          });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        this.get();
       }
-  });
+    });
   }
   openDeleting(element: any) {
     const dialogRef = this.dialog.open(DeleteEmployeeComponent, { width: '400px', data: element });

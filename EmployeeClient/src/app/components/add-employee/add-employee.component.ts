@@ -44,13 +44,14 @@ export class AddEmployeeComponent implements OnInit {
   roles: Role[] = []
   form!: FormGroup
   constructor(private fb: FormBuilder, private employeeService: EmployeeService, private roleService: RoleService,
-    private dialogRef: MatDialogRef<AddEmployeeComponent>, private datePipe: DatePipe) {
+    private dialogRef: MatDialogRef<AddEmployeeComponent>) {
     this.initValidations()
   }
 
   close() {
     this.dialogRef.close();
   }
+
   ngOnInit(): void {
     this.getRoles()
   }
@@ -76,23 +77,19 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   addEmployee() {
-    // המרת gender למספר
-    this.newEmployee.gender = parseInt(this.newEmployee.gender.toString());  
-    // יצירת מערך roles חדש מסוג EmployeeRole
+    this.newEmployee.gender = parseInt(this.newEmployee.gender.toString());
+
     this.newEmployee.roles = [];
 
     for (let i = 0; i < this.employeeRoles.length; i++) {
-      // יצירת אובייקט חדש מסוג EmployeeRole עבור כל roleId
       let employeeRole: EmployeeRole = {
         roleId: parseInt(this.employeeRoles[i])
       };
-
-      console.log("employeeRole", employeeRole);
       this.newEmployee.roles.push(employeeRole);
     }
     this.employeeService.addEmployee(this.newEmployee).subscribe(res => {
     }, error => {
-      
+
     });
   }
 

@@ -43,7 +43,7 @@ export class EditEmployeeComponent implements OnInit {
     private fb: FormBuilder, private employeeService: EmployeeService, private roleService: RoleService) {
     this.updatedEmployee = data;
     this.initValidations();
-}
+  }
 
   close() {
     this.dialogRef.close();
@@ -61,7 +61,7 @@ export class EditEmployeeComponent implements OnInit {
     })
   }
 
- 
+
 
   initValidations() {
     this.form = this.fb.group({
@@ -76,29 +76,19 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   updateEmployee() {
-    // המרת gender למספר
     this.updatedEmployee.gender = parseInt(this.updatedEmployee.gender.toString());
 
-    // יצירת מערך רולים חדש
     this.updatedEmployee.roles = [];
 
     this.updatedEmployee.roles = this.employeeRoles.map(roleId => ({
       roleId: parseInt(roleId, 10),
     }))
-    
 
-    // הדפסת העובד לצורך ביצוע בדיקות ותיעוד
-    console.log(this.updatedEmployee);
-    console.log(this.employeeRoles);
-
-    // נקודת עצירה לאפשרות נוחה יותר לבדיקת הקוד ב debugger
-    debugger;
-
-    // שליחת בקשת עדכון לשרת
-    this.employeeService.updateEmployee(this.updatedEmployee.id, this.updatedEmployee).subscribe(res => {
-      console.log("Employee updated successfully", res);
-    }, error => {
-      console.log("Error updating employee", error);
-    });
+    this.employeeService.updateEmployee(this.updatedEmployee.id, this.updatedEmployee).subscribe(
+      res => {
+      },
+      error => {
+        console.log("Error updating employee", error);
+      });
   }
 }
