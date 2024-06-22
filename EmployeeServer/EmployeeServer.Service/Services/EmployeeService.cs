@@ -51,7 +51,7 @@ namespace EmployeeServer.Service
             {
                 throw new InvalidOperationException("Duplicate Roles are not allowed.");
             }
-            if (!(roleDates.All(date => date > employee.StartDate || date == employee.StartDate)))
+            if (!(roleDates.All(date => date > employee.StartDate)))
             {
                 throw new InvalidOperationException("Not all job entry dates are before the employee's start date.");
             }

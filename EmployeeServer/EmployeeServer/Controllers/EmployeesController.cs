@@ -58,14 +58,23 @@ namespace EmployeeServer.Controllers
         }
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-
- 
         public async Task<ActionResult> Put(int id, [FromBody] EmployeePostModel model)
         {
-            var updateEmployee = await _employeeService.UpdateAsync( _mapper.Map<Employee>(model));
-            return Ok(_mapper.Map<EmployeeDto>(updateEmployee));
-           
+            var existingEmployee = await _employeeService.GetByIdAsync(id);
+            if (existingEmployee == null)
+            {
+                return NotFound();
+            }
+
+            // מיפוי הערכים החדשים על האובייקט הקיים
+            _mapper.Map(model, existingEmployee);
+
+            // עדכון האובייקט הקיים במסד הנתונים
+            var updatedEmployee = await _employeeService.UpdateAsync(existingEmployee);
+
+            return Ok(_mapper.Map<EmployeeDto>(updatedEmployee));
         }
+
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)

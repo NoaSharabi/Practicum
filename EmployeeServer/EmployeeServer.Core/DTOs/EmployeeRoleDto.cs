@@ -11,6 +11,6 @@ namespace EmployeeServer.Core.DTOs
     {
        // public int EmployeeId { get; set; }
         public int RoleId { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
     }
 }

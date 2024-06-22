@@ -13,44 +13,41 @@
                 <input formControlName="first_name" [(ngModel)]="updatedEmployee.firstName" matInput>
             </mat-form-field>
         </div>
-
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
                 <input formControlName="last_name" [(ngModel)]="updatedEmployee.lastName" matInput>
             </mat-form-field>
         </div>
-
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Start Date</mat-label>
-                <input formControlName="start_date" [(ngModel)]="updatedEmployee.startDate" matInput [matDatepicker]="picker1">
+                <input formControlName="start_date" [(ngModel)]="updatedEmployee.startDate" matInput
+                    [matDatepicker]="picker1">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
         </div>
-
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Birth Date</mat-label>
-                <input formControlName="birth_date" [(ngModel)]="updatedEmployee.birthDate" matInput [matDatepicker]="picker">
+                <input formControlName="birth_date" [(ngModel)]="updatedEmployee.birthDate" matInput
+                    [matDatepicker]="picker">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
-
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Select Employee Gender</mat-label>
-                <mat-select [(value)]="updatedEmployee.gender" formControlName="gender">
-                    <mat-option value="1">Male</mat-option>
-                    <mat-option value="2">Female</mat-option>
+                <mat-select formControlName="gender" [(ngModel)]="updatedEmployee.gender">
+                    <mat-option [value]="1">Male</mat-option>
+                    <mat-option [value]="2">Female</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Select Role</mat-label>
@@ -60,9 +57,9 @@
             </mat-form-field>
         </div>
     </mat-dialog-content>
-
     <mat-dialog-actions>
         <button mat-button (click)="close()">Cancel</button>
-        <button (click)="updateEmployee()" [disabled]="form.invalid" mat-button mat-dialog-close cdkFocusInitial>Update</button>
+        <button (click)="updateEmployee()" [disabled]="form.invalid" mat-button mat-dialog-close
+            cdkFocusInitial>Update</button>
     </mat-dialog-actions>
 </form>

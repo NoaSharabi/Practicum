@@ -38,7 +38,14 @@ namespace EmployeeServer.Data.Repositories
         public async Task<Employee> UpdateAsync(Employee employee)
         {
             var existEmployee = await GetByIdAsync(employee.Id);
-            _dataContext.Entry(existEmployee).CurrentValues.SetValues(existEmployee);
+            if (existEmployee == null)
+            {
+                throw new InvalidOperationException("Employee not found.");
+            }
+
+            // עדכון הערכים של העובד הקיים בערכים החדשים
+            _dataContext.Entry(existEmployee).CurrentValues.SetValues(employee);
+
             await _dataContext.SaveChangesAsync();
             return existEmployee;
         }

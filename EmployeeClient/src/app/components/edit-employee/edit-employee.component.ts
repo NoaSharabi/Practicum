@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
-import { Employee, EmployeeRole, Role } from '../../models/employee.model';
+import { Employee, Role } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
 import { RoleService } from '../../services/role.service';
 
@@ -32,15 +32,16 @@ import { RoleService } from '../../services/role.service';
     CommonModule,
     MatDatepickerModule],
   templateUrl: './edit-employee.component.html',
-  styleUrl: './edit-employee.component.scss'
+  styleUrls: ['./edit-employee.component.scss']
 })
 export class EditEmployeeComponent implements OnInit {
-  updatedEmployee!: Employee
-  employeeRoles: any[] = []
-  roles: Role[] = []
-  form!: FormGroup
+  updatedEmployee!: Employee;
+  employeeRoles: number[] = [];
+  roles: Role[] = [];
+  form!: FormGroup;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<EditEmployeeComponent>,
-    private fb: FormBuilder, private employeeService: EmployeeService, private roleService: RoleService) {
+              private fb: FormBuilder, private employeeService: EmployeeService, private roleService: RoleService) {
     this.updatedEmployee = data;
     this.initValidations();
   }
@@ -50,18 +51,21 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getRoles()
+    this.getRoles();
+    this.employeeRoles = this.updatedEmployee.roles.map(role => role.roleId);  // Update this line
   }
 
   getRoles() {
     this.roleService.getRoles().subscribe(res => {
-      this.roles = res
+      this.roles = res;
     }, err => {
-      this.roles = []
-    })
+      this.roles = [];
+    });
   }
 
-
+  compareFn(role1: any, role2: any): boolean {
+    return role1 && role2 ? role1.id === role2.id : role1 === role2;
+  }
 
   initValidations() {
     this.form = this.fb.group({
@@ -72,20 +76,18 @@ export class EditEmployeeComponent implements OnInit {
       birth_date: [{ value: '', disabled: false }, [Validators.required]],
       gender: [{ value: '', disabled: false }, [Validators.required]],
       role: [{ value: '', disabled: false }, [Validators.required]],
-    })
+    });
   }
 
   updateEmployee() {
-    this.updatedEmployee.gender = parseInt(this.updatedEmployee.gender.toString());
-
-    this.updatedEmployee.roles = [];
-
+    this.updatedEmployee.gender = parseInt(this.updatedEmployee.gender.toString(), 10);
     this.updatedEmployee.roles = this.employeeRoles.map(roleId => ({
-      roleId: parseInt(roleId, 10),
-    }))
+      roleId: parseInt(roleId.toString(), 10),
+    }));
 
     this.employeeService.updateEmployee(this.updatedEmployee.id, this.updatedEmployee).subscribe(
       res => {
+        console.log("Employee updated successfully");
       },
       error => {
         console.log("Error updating employee", error);
